@@ -17,7 +17,7 @@ class Point(val x: Double, val y: Double) {
     }
 
     fun displaced(vector: Vector, times: Double = 1.0): Point {
-        val displacement = vector.scaled(1.0)
+        val displacement = vector.scaled(times)
         return Point(x + displacement.u, y + displacement.v)
     }
 
