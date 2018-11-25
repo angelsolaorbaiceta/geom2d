@@ -18,6 +18,7 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
                 && p.y < top
     }
 
+    /* EQUALS */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -33,9 +34,6 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         result = 31 * result + size.hashCode()
         return result
     }
-
-    /* EQUALS */
-
 
     /* COMPANION */
     companion object {
