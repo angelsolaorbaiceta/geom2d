@@ -23,7 +23,7 @@ class Vector private constructor(val u: Double, val v: Double) {
         Vector(u - subtrahend.u, v - subtrahend.v)
 
     fun dotTimes(multiplicand: Vector): Double =
-        (u * multiplicand.u) + (v + multiplicand.v)
+        (u * multiplicand.u) + (v * multiplicand.v)
 
     fun crossTimes(multiplicand: Vector): Double =
         (u * multiplicand.v) - (v * multiplicand.u)
@@ -60,6 +60,8 @@ class Vector private constructor(val u: Double, val v: Double) {
         result = 31 * result + v.hashCode()
         return result
     }
+
+    override fun toString(): String = "{$u, $v}"
 
     /* COMPANION */
     companion object {

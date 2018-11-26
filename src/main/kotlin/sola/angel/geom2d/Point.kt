@@ -45,6 +45,8 @@ class Point(val x: Double, val y: Double) {
         return result
     }
 
+    override fun toString(): String = "($x, $y)"
+
     /* COMPANION */
     companion object {
         val origin = Point(0.0, 0.0)
