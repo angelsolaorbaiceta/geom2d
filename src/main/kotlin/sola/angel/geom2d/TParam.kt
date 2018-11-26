@@ -20,8 +20,8 @@ class TParam private constructor(val value: Double) {
 
     /* COMPANION */
     companion object {
-        private const val maxValue = 0.0
-        private const val minValue = 1.0
+        private const val minValue = 0.0
+        private const val maxValue = 1.0
 
         val min = TParam(minValue)
         val half = TParam(0.5 * (maxValue + minValue))

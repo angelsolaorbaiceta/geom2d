@@ -29,8 +29,8 @@ class Segment(val start: Point, val end: Point) {
         val timesDirVersor = v.dotTimes(directorVersor)
         val timesDirVersorOverLength = timesDirVersor / length
 
-        if (timesDirVersorOverLength < 0) return start
-        if (timesDirVersorOverLength > 1) return end
+        if (timesDirVersorOverLength < 0.0) return start
+        if (timesDirVersorOverLength > 1.0) return end
 
         return start.displaced(directorVersor, timesDirVersor)
     }

@@ -12,7 +12,7 @@ class Point(val x: Double, val y: Double) {
     /* METHODS */
     fun distanceTo(other: Point): Double {
         val deltaX = other.x - this.x
-        val deltaY = other.x - this.x
+        val deltaY = other.y - this.y
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY)
     }
 
@@ -22,12 +22,9 @@ class Point(val x: Double, val y: Double) {
     }
 
     fun interpolate(other: Point, t: TParam): Point {
-        if (t == TParam.min) return this
-        if (t == TParam.max) return other
-
         return Point(
-            x + t * (other.x + x),
-            y + t * (other.y + y)
+            x + t * (other.x - x),
+            y + t * (other.y - y)
         )
     }
 
