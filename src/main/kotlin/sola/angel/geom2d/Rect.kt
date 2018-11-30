@@ -10,6 +10,8 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
     val bottom = origin.y
     val top = origin.y + size.height
 
+    val center = origin.displaced(size.asVector(), 0.5)
+
     /* METHODS */
     override fun containsPoint(p: Point): Boolean {
         return p.x > left

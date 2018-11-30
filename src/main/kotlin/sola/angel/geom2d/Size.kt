@@ -4,6 +4,10 @@ import sola.angel.nums.fuzzyEquals
 
 class Size(val width: Double, val height: Double) {
 
+    val area = width * height
+
+    fun asVector(): Vector = Vector.make(width, height)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
