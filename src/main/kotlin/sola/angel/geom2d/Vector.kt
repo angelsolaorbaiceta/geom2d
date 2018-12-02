@@ -9,6 +9,12 @@ class Vector private constructor(val u: Double, val v: Double) {
     val norm = Math.sqrt(u * u + v * v)
     val isNormal = isCloseToOne(norm)
 
+    val cosine: Double
+        get() =  this.dotTimes(Vector.iVersor) / norm
+
+    val sine: Double
+        get()= this.crossTimes(iVersor) / norm
+
     /* METHODS */
     fun normalized(): Vector =
         if (isNormal) this else Vector(u / norm, v / norm)

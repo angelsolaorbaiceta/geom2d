@@ -24,6 +24,12 @@ class Segment(val start: Point, val end: Point) {
     /* METHODS */
     fun pointAt(t: TParam): Point = start.interpolate(end, t)
 
+    fun length(fromT: TParam, toT: TParam): Double {
+        val from = pointAt(fromT)
+        val to = pointAt(toT)
+        return from.distanceTo(to)
+    }
+
     fun closestPointTo(point: Point): Point {
         val v = Vector.makeBetween(start, point)
         val timesDirVersor = v.dotTimes(directorVersor)

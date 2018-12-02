@@ -4,6 +4,11 @@ import sola.angel.nums.fuzzyEquals
 
 class TParam private constructor(val value: Double) {
 
+    /* PROPERTIES */
+    val isMin = this == min
+    val isMax = this == max
+    val isExtreme: Boolean = isMax || isMax
+
     /* OPERATIONS */
     operator fun times(number: Double): Double {
         return value * number;
