@@ -17,6 +17,30 @@ class AffineTransform(
         )
     }
 
+    /* CREATION */
+    fun displaced(dx: Double, dy: Double): AffineTransform {
+        return AffineTransform(
+            scaleX = scaleX,
+            scaleY = scaleY,
+            translationX = translationX + dx,
+            translationY = translationY + dy,
+            shearX = shearX,
+            shearY = shearY
+        )
+    }
+
+    fun scaled(factor: Double, center: Point = Point.origin): AffineTransform {
+        val oneMinusFactor = 1.0 - factor
+        return AffineTransform(
+            scaleX = scaleX * factor,
+            scaleY = scaleY * factor,
+            translationX = center.x * scaleX * oneMinusFactor + translationX,
+            translationY = center.y * scaleY * oneMinusFactor + translationY,
+            shearX = shearX,
+            shearY = shearY
+        )
+    }
+
     /* COMPANION OBJECT */
     companion object {
         val identity = AffineTransform(1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
