@@ -1,0 +1,8 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/ci_geom2d
+    steps:
+      - checkout
+      - run: gradle build
