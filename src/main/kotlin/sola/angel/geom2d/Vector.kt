@@ -2,6 +2,7 @@ package sola.angel.geom2d
 
 import sola.angel.nums.fuzzyEquals
 import sola.angel.nums.isCloseToOne
+import sola.angel.nums.isCloseToZero
 
 class Vector private constructor(val u: Double, val v: Double) {
 
@@ -19,8 +20,14 @@ class Vector private constructor(val u: Double, val v: Double) {
     fun normalized(): Vector =
         if (isNormal) this else Vector(u / norm, v / norm)
 
+    fun opposite(): Vector = Vector(-u, -v)
+
     fun scaled(scale: Double): Vector =
-        if (isCloseToOne(scale)) this else Vector(scale * u, scale * v)
+        when {
+            isCloseToOne(scale) -> this
+            isCloseToZero(scale) -> Vector.zero
+            else -> Vector(scale * u, scale * v)
+        }
 
     operator fun plus(addend: Vector): Vector =
         Vector(u + addend.u, v + addend.v)
