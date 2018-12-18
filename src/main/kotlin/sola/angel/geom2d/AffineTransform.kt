@@ -10,12 +10,29 @@ class AffineTransform(
 ) {
 
     /* METHODS */
-    fun apply(point: Point): Point {
-        return Point(
+    fun apply(point: Point): Point =
+        Point(
             (scaleX * point.x) + (shearX * point.y) + translationX,
             (shearY * point.x) + (scaleY * point.y) + translationY
         )
-    }
+
+    fun apply(segment: Segment): Segment =
+        Segment(
+            apply(segment.start),
+            apply(segment.end)
+        )
+
+    fun applyScale(size: Size): Size =
+        Size(
+            size.width * scaleX,
+            size.height * scaleY
+        )
+
+    fun applyScaleAndDisplacement(rect: Rect): Rect =
+        Rect(
+            apply(rect.origin),
+            applyScale(rect.size)
+        )
 
     /* CREATION */
     fun displaced(dx: Double, dy: Double): AffineTransform {

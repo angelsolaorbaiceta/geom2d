@@ -59,4 +59,15 @@ class AffineTransformTest {
             AffineTransform.makeRotation(angleInRadians).apply(point)
         )
     }
+
+    @Test
+    fun `scale size`() {
+        val size = Size(3.0, 5.0)
+        val scale = AffineTransform.makeScaling(2.0, 4.0)
+
+        assertEquals(
+            Size(6.0, 20.0),
+            scale.applyScale(size)
+        )
+    }
 }
