@@ -39,4 +39,36 @@ class VectorTest {
             vector.normalized()
         )
     }
+
+    @Test
+    fun `can be scaled`() {
+        assertEquals(
+            Vector.make(4.0, 6.0),
+            Vector.make(2.0, 3.0).scaled(2.0)
+        )
+    }
+
+    @Test
+    fun `compute opposite`() {
+        assertEquals(
+            Vector.make(-3.0, -4.0),
+            Vector.make(3.0, 4.0).opposite()
+        )
+    }
+
+    @Test
+    fun `keep orientation with new length`() {
+        assertEquals(
+            Vector.make(7.0, 0.0),
+            Vector.make(4.0, 0.0).withLength(7.0)
+        )
+    }
+
+    @Test
+    fun `compute perpendicular`() {
+        assertEquals(
+            Vector.make(-5.0, 3.0),
+            Vector.make(3.0, 5.0).perpendicular()
+        )
+    }
 }

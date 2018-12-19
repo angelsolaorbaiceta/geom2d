@@ -22,6 +22,8 @@ class Vector private constructor(val u: Double, val v: Double) {
 
     fun opposite(): Vector = Vector(-u, -v)
 
+    fun withLength(length: Double): Vector = normalized().scaled(length)
+
     fun scaled(scale: Double): Vector =
         when {
             isCloseToOne(scale) -> this
@@ -56,6 +58,8 @@ class Vector private constructor(val u: Double, val v: Double) {
         val crossProduct = this.crossTimes(other)
         return Math.copySign(value, crossProduct)
     }
+
+    fun perpendicular(): Vector = Vector(-v, u)
 
     /* EQUALS & HASH */
     override fun equals(other: Any?): Boolean {
