@@ -1,6 +1,7 @@
 package sola.angel.geom2d
 
 import sola.angel.nums.isCloseToZero
+import kotlin.text.Typography.times
 
 class Segment(val start: Point, val end: Point) {
 
@@ -17,8 +18,8 @@ class Segment(val start: Point, val end: Point) {
     val width: Double
         get() = Math.abs(end.x - start.x)
 
-    val directorVersor: Vector
-        get() = Vector.makeVersorBetween(start, end)
+    val directorVersor: Vector = Vector.makeVersorBetween(start, end)
+    val normalVersor: Vector = directorVersor.perpendicular()
 
     val bounds: Circle
         get() = Circle(middle, start.distanceTo(middle))
@@ -37,6 +38,14 @@ class Segment(val start: Point, val end: Point) {
         val to = pointAt(toT)
         return from.distanceTo(to)
     }
+
+    fun displaced(disp: Vector, times: Double = 1.0): Segment =
+        Segment(
+            start.displaced(disp, times),
+            end.displaced(disp, times)
+        )
+
+    fun inverted(): Segment = Segment(this.end, this.start)
 
     fun closestPointTo(point: Point): Point {
         val v = Vector.makeBetween(start, point)
