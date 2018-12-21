@@ -25,6 +25,8 @@ class Size(val width: Double, val height: Double) {
         return result
     }
 
+    override fun toString(): String = "width: $width, height: $height"
+
     companion object {
         val zero = Size(0.0, 0.0)
     }

@@ -1,7 +1,6 @@
 package sola.angel.geom2d
 
 import sola.angel.nums.isCloseToZero
-import kotlin.text.Typography.times
 
 class Segment(val start: Point, val end: Point) {
 
@@ -63,9 +62,17 @@ class Segment(val start: Point, val end: Point) {
         if (this === other) return true
 
         if (other is Segment) {
-            return start.equals(other.start) && end.equals(other.end)
+            return start == other.start && end == other.end
         }
 
         return false
     }
+
+    override fun hashCode(): Int {
+        var result = start.hashCode()
+        result = 31 * result + end.hashCode()
+        return result
+    }
+
+    override fun toString(): String = "from $start to $end"
 }
