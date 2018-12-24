@@ -1,6 +1,5 @@
 package sola.angel.geom2d
 
-import sola.angel.geom2d.TParam.Companion.min
 import sola.angel.geom2d.contracts.PointContainable
 
 class Rect(val origin: Point, val size: Size) : PointContainable {
