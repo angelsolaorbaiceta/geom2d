@@ -82,7 +82,7 @@ class AffineTransform(
                 scaleX = cos,
                 scaleY = cos,
                 translationX = center.x * oneMinusCos + center.y * sin,
-                translationY = center.y * oneMinusCos - center.x * cos,
+                translationY = center.y * oneMinusCos - center.x * sin,
                 shearX = -sin,
                 shearY = sin
             )
