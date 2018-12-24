@@ -63,21 +63,6 @@ class AffineTransform(
         )
     }
 
-    fun rotated(radians: Double, center: Point = Point.origin): AffineTransform {
-        val cos = Math.cos(radians)
-        val sin = Math.sin(radians)
-        val oneMinusCos = 1.0 - cos
-
-        return AffineTransform(
-            scaleX = cos,
-            scaleY = cos,
-            translationX = center.x * oneMinusCos + center.y * sin,
-            translationY = center.y * oneMinusCos - center.x * cos,
-            shearX = -sin,
-            shearY = sin
-        )
-    }
-
     /* COMPANION OBJECT */
     companion object {
         val identity = AffineTransform(1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
@@ -88,10 +73,19 @@ class AffineTransform(
         fun makeScaling(sx: Double, sy: Double): AffineTransform =
             AffineTransform(sx, sy, 0.0, 0.0, 0.0, 0.0)
 
-        fun makeRotation(radians: Double): AffineTransform {
+        fun makeRotation(radians: Double, center: Point = Point.origin): AffineTransform {
             val cos = Math.cos(radians)
             val sin = Math.sin(radians)
-            return AffineTransform(cos, cos, 0.0, 0.0, -sin, sin)
+            val oneMinusCos = 1.0 - cos
+
+            return AffineTransform(
+                scaleX = cos,
+                scaleY = cos,
+                translationX = center.x * oneMinusCos + center.y * sin,
+                translationY = center.y * oneMinusCos - center.x * cos,
+                shearX = -sin,
+                shearY = sin
+            )
         }
     }
 }

@@ -76,7 +76,7 @@ class AffineTransformTest {
     fun `rotate angle about a point`() {
         val center = Point(2.0, 2.0)
         val point = Point(4.0, 4.0)
-        val transform = AffineTransform.identity.rotated(PI / 4.0, center)
+        val transform = AffineTransform.makeRotation(PI / 4.0, center)
 
         assertEquals(
             center + Point(0.0, 2.0 * Math.sqrt(2.0)),
