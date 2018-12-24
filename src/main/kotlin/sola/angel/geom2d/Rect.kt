@@ -1,5 +1,6 @@
 package sola.angel.geom2d
 
+import sola.angel.geom2d.TParam.Companion.min
 import sola.angel.geom2d.contracts.PointContainable
 
 class Rect(val origin: Point, val size: Size) : PointContainable {
@@ -12,7 +13,7 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
 
     val center = origin.displaced(size.asVector(), 0.5)
 
-    /* METHODS */
+    //#region METHODS
     fun asPolygon(): Polygon =
         Polygon(
             listOf(
@@ -53,7 +54,25 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         return thisRange.overlapRange(otherRange)
     }
 
-    /* EQUALS & HASH */
+    fun includingPoints(points: Iterable<Point>, margin: Double = 0.0): Rect {
+        val outsidePoints = points.filter { !containsPoint(it) }
+        if (outsidePoints.isEmpty()) return this
+
+        val (min, max) = findExtremes(outsidePoints)
+        val origin = Point(
+            if (min.x < left) min.x - margin else left,
+            if (min.y < bottom) min.y - margin else bottom
+        )
+        val corner = Point(
+            if (max.x > right) max.x + margin else right,
+            if (max.y > top) max.y + margin else top
+        )
+
+        return Rect(origin, (corner - origin).toSize())
+    }
+    //#endregion
+
+    //#region EQUALS, HASH & TO STRING
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -70,22 +89,26 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         return result
     }
 
-    /* COMPANION */
+    override fun toString(): String = "origin: $origin, size: $size"
+
+    //#endregion
+
+    //#region COMPANION
     companion object {
         val nilRect = Rect(Point.origin, Size.zero)
 
         fun makeContaining(points: Iterable<Point>, margin: Double = 0.0): Rect {
-            val orderedXCoords = points.map { it.x }.sorted()
-            val orderedYCoords = points.map { it.y }.sorted()
+            val (min, max) = findExtremes(points)
+            val size = max - min
 
             return Rect(
                 Point(
-                    orderedXCoords.first() - margin,
-                    orderedYCoords.first() - margin
+                    min.x - margin,
+                    min.y - margin
                 ),
                 Size(
-                    (orderedXCoords.last() - orderedXCoords.first()) + 2.0 * margin,
-                    (orderedYCoords.last() - orderedYCoords.first()) + 2.0 * margin
+                    size.x + 2.0 * margin,
+                    size.y + 2.0 * margin
                 )
             )
         }
@@ -96,4 +119,5 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
                 size
             )
     }
+    //#endregion
 }

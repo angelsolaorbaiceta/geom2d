@@ -38,4 +38,36 @@ class RectTest {
             Rect.makeCentered(center, size).origin
         )
     }
+
+    @Test
+    fun `make containing points and with margins`() {
+        val rect = Rect.makeContaining(
+            listOf(Point.origin, Point(10.0, 20.0)),
+            5.0
+        )
+
+        assertEquals(
+            Rect(Point(-5.0, -5.0), Size(20.0, 30.0)),
+            rect
+        )
+    }
+
+    @Test
+    fun `including points which are inside original rect returns same rect`() {
+        val originalRect = Rect(Point.origin, Size(10.0, 20.0))
+        val rect = originalRect.includingPoints(listOf(Point(5.0, 5.0)))
+
+        assertEquals(originalRect, rect)
+    }
+
+    @Test
+    fun `including point to the right`() {
+        val originalRect = Rect(Point.origin, Size(10.0, 20.0))
+        val point = Point(15.0, 5.0)
+
+        assertEquals(
+            Rect(Point.origin, Size(15.0, 20.0)),
+            originalRect.includingPoints(listOf(point))
+        )
+    }
 }

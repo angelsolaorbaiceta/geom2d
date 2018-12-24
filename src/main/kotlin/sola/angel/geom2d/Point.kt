@@ -28,6 +28,10 @@ class Point(val x: Double, val y: Double) {
         )
     }
 
+    fun toSize(): Size = Size(x, y)
+
+    fun toVector(): Vector = Vector.make(x, y)
+
     /* EQUALS & HASH */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
