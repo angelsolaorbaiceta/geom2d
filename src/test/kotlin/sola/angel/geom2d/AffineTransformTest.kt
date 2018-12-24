@@ -2,6 +2,7 @@ package sola.angel.geom2d
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import kotlin.math.PI
 
 class AffineTransformTest {
 
@@ -68,6 +69,18 @@ class AffineTransformTest {
         assertEquals(
             Size(6.0, 20.0),
             scale.applyScale(size)
+        )
+    }
+
+    @Test
+    fun `rotate angle about a point`() {
+        val center = Point(2.0, 2.0)
+        val point = Point(4.0, 4.0)
+        val transform = AffineTransform.identity.rotated(PI / 4.0, center)
+
+        assertEquals(
+            center + Point(0.0, 2.0 * Math.sqrt(2.0)),
+            transform.apply(point)
         )
     }
 }

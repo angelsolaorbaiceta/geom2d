@@ -22,6 +22,11 @@ class AffineTransform(
             apply(segment.end)
         )
 
+    fun apply(polygon: Polygon): Polygon =
+        Polygon(
+            polygon.vertices.map { apply(it) }
+        )
+
     fun applyScale(size: Size): Size =
         Size(
             size.width * scaleX,
@@ -55,6 +60,21 @@ class AffineTransform(
             translationY = center.y * scaleY * oneMinusFactor + translationY,
             shearX = shearX,
             shearY = shearY
+        )
+    }
+
+    fun rotated(radians: Double, center: Point = Point.origin): AffineTransform {
+        val cos = Math.cos(radians)
+        val sin = Math.sin(radians)
+        val oneMinusCos = 1.0 - cos
+
+        return AffineTransform(
+            scaleX = cos,
+            scaleY = cos,
+            translationX = center.x * oneMinusCos + center.y * sin,
+            translationY = center.y * oneMinusCos - center.x * cos,
+            shearX = -sin,
+            shearY = sin
         )
     }
 

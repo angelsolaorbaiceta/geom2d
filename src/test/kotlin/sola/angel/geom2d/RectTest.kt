@@ -27,4 +27,15 @@ class RectTest {
             rectA.intersectionWith(rectB)
         )
     }
+
+    @Test
+    fun `make centered`() {
+        val center = Point(3.0, 4.0)
+        val size = Size(10.0, 20.0)
+
+        assertEquals(
+            Point(-2.0, -6.0),
+            Rect.makeCentered(center, size).origin
+        )
+    }
 }

@@ -13,28 +13,21 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
     val center = origin.displaced(size.asVector(), 0.5)
 
     /* METHODS */
+    fun asPolygon(): Polygon =
+        Polygon(
+            listOf(
+                origin,
+                Point(right, bottom),
+                Point(right, top),
+                Point(left, top)
+            )
+        )
+
     override fun containsPoint(p: Point): Boolean {
         return p.x > left
                 && p.x < right
                 && p.y > bottom
                 && p.y < top
-    }
-
-    /* EQUALS */
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-
-        if (other is Rect) {
-            return origin.equals(other.origin) && size.equals(other.size)
-        }
-
-        return false
-    }
-
-    override fun hashCode(): Int {
-        var result = origin.hashCode()
-        result = 31 * result + size.hashCode()
-        return result
     }
 
     fun intersectionWith(other: Rect): Rect? {
@@ -60,6 +53,23 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         return thisRange.overlapRange(otherRange)
     }
 
+    /* EQUALS & HASH */
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+
+        if (other is Rect) {
+            return origin.equals(other.origin) && size.equals(other.size)
+        }
+
+        return false
+    }
+
+    override fun hashCode(): Int {
+        var result = origin.hashCode()
+        result = 31 * result + size.hashCode()
+        return result
+    }
+
     /* COMPANION */
     companion object {
         val nilRect = Rect(Point.origin, Size.zero)
@@ -79,5 +89,11 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
                 )
             )
         }
+
+        fun makeCentered(center: Point, size: Size): Rect =
+            Rect(
+                Point(center.x - size.width / 2.0, center.y - size.height / 2.0),
+                size
+            )
     }
 }
