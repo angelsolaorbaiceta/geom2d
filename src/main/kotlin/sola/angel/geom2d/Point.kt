@@ -2,6 +2,9 @@ package sola.angel.geom2d
 
 import sola.angel.nums.fuzzyEquals
 
+/**
+ * Ordered pair (x, y) of numbers representing a position in a two-dimensional plane.
+ */
 class Point(val x: Double, val y: Double) {
 
     /* OPERATIONS */

@@ -1,6 +1,6 @@
 package sola.angel.geom2d
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class SegmentTest {
@@ -26,6 +26,22 @@ class SegmentTest {
     }
 
     @Test
+    fun `has height`() {
+        assertEquals(
+            300.0,
+            Segment(Point.origin, Point(200.0, 300.0)).height
+        )
+    }
+
+    @Test
+    fun `has width`() {
+        assertEquals(
+            200.0,
+            Segment(Point.origin, Point(200.0, 300.0)).width
+        )
+    }
+
+    @Test
     fun `compute middle point`() {
         assertEquals(
             Point(200.0, 200.0),
@@ -38,6 +54,27 @@ class SegmentTest {
         assertEquals(
             Point(200.0, 200.0),
             segment.closestPointTo(Point(50.0, 50.0))
+        )
+    }
+
+    @Test
+    fun `point is not close enough if out of bounds`() {
+        assertFalse(
+            segment.isCloseEnoughTo(Point(500.0, 500.0), 10.0)
+        )
+    }
+
+    @Test
+    fun `point which is inside bounds but not close enough`() {
+        assertFalse(
+            segment.isCloseEnoughTo(Point(250.0, 250.0), 10.0)
+        )
+    }
+
+    @Test
+    fun `point is close enough`() {
+        assertTrue(
+            segment.isCloseEnoughTo(Point(201.0, 201.0), 10.0)
         )
     }
 }

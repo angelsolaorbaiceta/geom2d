@@ -1,35 +1,39 @@
 package sola.angel.geom2d
 
+import sola.angel.geom2d.contracts.ProximityCheckable
 import sola.angel.nums.isCloseToZero
+import kotlin.math.abs
 
-class Segment(val start: Point, val end: Point) {
+/**
+ * Part of a line that is bounded by two distinct end points, and contains every point on
+ * the line between its endpoints.
+ */
+class Segment(val start: Point, val end: Point) : ProximityCheckable {
 
-    /* PROPERTIES */
-    val middle: Point
-        get() = pointAt(TParam.half)
-
-    val length: Double
-        get() = start.distanceTo(end)
-
-    val height: Double
-        get() = Math.abs(end.y - start.y)
-
-    val width: Double
-        get() = Math.abs(end.x - start.x)
-
+    //#region PROPERTIES
+    val middle: Point = pointAt(TParam.half)
     val directorVersor: Vector = Vector.makeVersorBetween(start, end)
     val normalVersor: Vector = directorVersor.perpendicular()
 
-    val bounds: Circle
-        get() = Circle(middle, start.distanceTo(middle))
+    val length: Double by lazy {
+        start.distanceTo(end)
+    }
+    val height: Double by lazy {
+        abs(end.y - start.y)
+    }
+    val width: Double by lazy {
+        abs(end.x - start.x)
+    }
 
-    val isHorizontal: Boolean
-        get() = isCloseToZero(height)
+    val bounds: Circle by lazy {
+        Circle(middle, start.distanceTo(middle))
+    }
 
-    val isVertical: Boolean
-        get() = isCloseToZero(width)
+    val isHorizontal: Boolean get() = isCloseToZero(height)
+    val isVertical: Boolean get() = isCloseToZero(width)
+    //#endregion
 
-    /* METHODS */
+    //#region METHODS
     fun pointAt(t: TParam): Point = start.interpolate(end, t)
 
     fun length(fromT: TParam, toT: TParam): Double {
@@ -38,15 +42,15 @@ class Segment(val start: Point, val end: Point) {
         return from.distanceTo(to)
     }
 
-    fun displaced(disp: Vector, times: Double = 1.0): Segment =
+    fun displaced(vector: Vector, times: Double = 1.0): Segment =
         Segment(
-            start.displaced(disp, times),
-            end.displaced(disp, times)
+            start.displaced(vector, times),
+            end.displaced(vector, times)
         )
 
     fun inverted(): Segment = Segment(this.end, this.start)
 
-    fun closestPointTo(point: Point): Point {
+    override fun closestPointTo(point: Point): Point {
         val v = Vector.makeBetween(start, point)
         val timesDirVersor = v.dotTimes(directorVersor)
         val timesDirVersorOverLength = timesDirVersor / length
@@ -57,7 +61,13 @@ class Segment(val start: Point, val end: Point) {
         return start.displaced(directorVersor, timesDirVersor)
     }
 
-    /* EQUALS */
+    override fun isCloseEnoughTo(point: Point, tolerance: Double): Boolean =
+        if (!bounds.containsPoint(point)) false
+        else closestPointTo(point).distanceTo(point) < tolerance
+
+    //#endregion
+
+    //#region EQUALS, HASH CODE & TO STRING
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -75,4 +85,5 @@ class Segment(val start: Point, val end: Point) {
     }
 
     override fun toString(): String = "from $start to $end"
+    //#endregion
 }
