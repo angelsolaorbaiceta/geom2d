@@ -15,21 +15,22 @@ class Polygon(val vertices: List<Point>) : PointContainable {
     val sides: List<Segment> by lazy {
         makeRoundPairs(vertices).map { pair -> Segment(pair.first, pair.second) }
     }
-    //#endregion
 
-    //#region METHODS
-    fun geometricalCenter(): Point =
+    val geometricalCenter: Point by lazy {
         Point(
             vertices.map { it.x }.average(),
             vertices.map { it.y }.average()
         )
+    }
+    //#endregion
 
+    //#region METHODS
     fun rotatedAboutPoint(radians: Double, center: Point): Polygon {
         val rotation = AffineTransform.makeRotation(radians, center)
         return rotation.apply(this)
     }
 
-    fun rotatedAboutCenter(radians: Double): Polygon = rotatedAboutPoint(radians, geometricalCenter())
+    fun rotatedAboutCenter(radians: Double): Polygon = rotatedAboutPoint(radians, geometricalCenter)
 
     override fun containsPoint(p: Point): Boolean {
         val vectors = vertices.map { vertex -> Vector.makeBetween(p, vertex) }

@@ -17,7 +17,7 @@ class PolygonTest {
     fun `geometrical center`() {
         assertEquals(
             Point(2.0, 1.0),
-            polygon.geometricalCenter()
+            polygon.geometricalCenter
         )
     }
 
