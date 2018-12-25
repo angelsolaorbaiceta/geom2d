@@ -40,6 +40,17 @@ class AffineTransformTest {
     }
 
     @Test
+    fun `scale point about center`() {
+        val point = Point(4.0, 4.0)
+        val center = Point(2.0, 2.0)
+
+        assertEquals(
+            Point(8.0, 10.0),
+            AffineTransform.makeScaling(3.0, 4.0, center).apply(point)
+        )
+    }
+
+    @Test
     fun `rotate point positive angle`() {
         val point = Point(5.0, 0.0)
         val angleInRadians = 0.5 * Math.PI
