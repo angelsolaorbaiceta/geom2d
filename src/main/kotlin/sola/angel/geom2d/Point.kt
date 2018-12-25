@@ -7,12 +7,12 @@ import sola.angel.nums.fuzzyEquals
  */
 class Point(val x: Double, val y: Double) {
 
-    /* OPERATIONS */
+    //#region OPERATIONS
     operator fun plus(addend: Point): Point = Point(x + addend.x, y + addend.y)
-
     operator fun minus(subtrahend: Point): Point = Point(x - subtrahend.x, y - subtrahend.y)
+    //#endregion
 
-    /* METHODS */
+    //#region METHODS
     fun distanceTo(other: Point): Double {
         val deltaX = other.x - this.x
         val deltaY = other.y - this.y
@@ -32,10 +32,12 @@ class Point(val x: Double, val y: Double) {
     }
 
     fun toSize(): Size = Size(x, y)
-
     fun toVector(): Vector = Vector.make(x, y)
+    fun vectorTo(end: Point): Vector = Vector.make(end.x - x, end.y - y)
+    fun versorTo(end: Point): Vector = Vector.makeVersor(end.x - x, end.y - y)
+    //#endregion
 
-    /* EQUALS & HASH */
+    //#region EQUALS, HASH & TO STRING
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -53,6 +55,7 @@ class Point(val x: Double, val y: Double) {
     }
 
     override fun toString(): String = "($x, $y)"
+    //#endregion
 
     /* COMPANION */
     companion object {

@@ -95,18 +95,9 @@ class Vector private constructor(val u: Double, val v: Double) {
         val jVersor = Vector(0.0, 1.0)
 
         fun make(u: Double, v: Double): Vector = Vector(u, v)
-
-        fun makeBetween(start: Point, end: Point): Vector {
-            val vector = end - start
-            return make(vector.x, vector.y)
-        }
-
+        fun makeBetween(start: Point, end: Point): Vector = start.vectorTo(end)
         fun makeVersor(u: Double, v: Double): Vector = Vector(u, v).normalized()
-
-        fun makeVersorBetween(start: Point, end: Point): Vector {
-            val vector = end - start
-            return makeVersor(vector.x, vector.y)
-        }
+        fun makeVersorBetween(start: Point, end: Point): Vector = start.versorTo(end)
     }
     //#endregion
 }
