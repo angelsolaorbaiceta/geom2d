@@ -2,6 +2,9 @@ package sola.angel.geom2d
 
 import sola.angel.geom2d.contracts.PointContainable
 
+/**
+ * Quadrilateral with four right angles.
+ */
 class Rect(val origin: Point, val size: Size) : PointContainable {
 
     /* PROPERTIES */

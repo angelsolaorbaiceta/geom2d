@@ -3,6 +3,10 @@ package sola.angel.geom2d
 import sola.angel.geom2d.contracts.PointContainable
 import sola.angel.nums.fuzzyEquals
 
+/**
+ * Simple closed shape.
+ * Set of all points in a plane that are at a given distance from a given point, the center.
+ */
 class Circle(val center: Point, val radius: Double) : PointContainable {
 
     /* METHODS */
