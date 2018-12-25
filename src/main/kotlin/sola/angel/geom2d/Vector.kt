@@ -4,19 +4,25 @@ import sola.angel.nums.fuzzyEquals
 import sola.angel.nums.isCloseToOne
 import sola.angel.nums.isCloseToZero
 
+/**
+ * Geometric object that has magnitude and direction, and is represented
+ * by its horizontal and vertical projections (u, v).
+ */
 class Vector private constructor(val u: Double, val v: Double) {
 
-    /* PROPERTIES */
+    //#region PROPERTIES
     val norm = Math.sqrt(u * u + v * v)
     val isNormal = isCloseToOne(norm)
 
-    val cosine: Double
-        get() =  this.dotTimes(Vector.iVersor) / norm
+    val cosine: Double by lazy {
+        dotTimes(Vector.iVersor) / norm
+    }
+    val sine: Double by lazy {
+        crossTimes(iVersor) / norm
+    }
+    //#endregion
 
-    val sine: Double
-        get()= this.crossTimes(iVersor) / norm
-
-    /* METHODS */
+    //#region METHODS
     fun normalized(): Vector =
         if (isNormal) this else Vector(u / norm, v / norm)
 
@@ -60,8 +66,9 @@ class Vector private constructor(val u: Double, val v: Double) {
     }
 
     fun perpendicular(): Vector = Vector(-v, u)
+    //#endregion
 
-    /* EQUALS & HASH */
+    //#region EQUALS, HASH & TO STRING
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
@@ -79,8 +86,9 @@ class Vector private constructor(val u: Double, val v: Double) {
     }
 
     override fun toString(): String = "{$u, $v}"
+    //#endregion
 
-    /* COMPANION */
+    //#region COMPANION
     companion object {
         val zero = Vector(0.0, 0.0)
         val iVersor = Vector(1.0, 0.0)
@@ -100,4 +108,5 @@ class Vector private constructor(val u: Double, val v: Double) {
             return makeVersor(vector.x, vector.y)
         }
     }
+    //#endregion
 }

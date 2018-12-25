@@ -1,6 +1,6 @@
 package sola.angel.geom2d
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import kotlin.math.PI
 
@@ -33,7 +33,21 @@ class PolygonTest {
 
         assertEquals(
             rotated,
-            polygon.rotateAboutPoint(-PI / 2.0, center)
+            polygon.rotatedAboutPoint(-PI / 2.0, center)
+        )
+    }
+
+    @Test
+    fun `contains point`() {
+        assertTrue(
+            polygon.containsPoint(Point(3.0, 1.0))
+        )
+    }
+
+    @Test
+    fun `does not contain point`() {
+        assertFalse(
+            polygon.containsPoint(Point(3.0, 10.0))
         )
     }
 }

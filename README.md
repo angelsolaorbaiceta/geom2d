@@ -6,11 +6,11 @@ Immutable 2D Geometry library written in Kotlin.
 
 ## Primitives
 - `Point`: Ordered pair (x, y) of numbers representing a position in a two-dimensional plane
-- `Vector`
+- `Vector`: Geometric object that has magnitude and direction
 - `Segment`: Part of a line that is bounded by two distinct end points
 - `Rectangle`
 - `Circle`
-- `Polygon`
+- `Polygon`: Plane figure that is described by a finite number of straight line segments connected to form a polygonal chain or polygonal circuit
 
 ## Contracts
 - `PointContainable`: implemented by primitives which have can check if they contain a point
