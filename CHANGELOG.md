@@ -10,14 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Segment` implements `ProximityCheckable`
 - `Polygon` implements `PointContainable
 - Affine transformation creation for scaling about a point
+- `TPosValue` tuple of a value associated to a position given by `TParam`
+- Segment Diagram to represent a diagram which x axis is a segment
 
 ### Changed
 - `Polygon` geometric center as property instead of method
-- Some primitives implementing properties "by lazy" 
+- Some primitives implementing properties "by lazy"
+- `TParam` implements comparable to establish ordering according to value
 
 ## 1.0.0 - 2018-12-24
 ### Added
 - Primitives: `Point`, `Vector`, `Segment`, `Rect`, `Circle`, `Polygon`
+- `TParam`: parameter going from 0 to 1 used to iterate across linear geometries
 - Affine Transformations
 - Contracts: `PointContainable`
 
