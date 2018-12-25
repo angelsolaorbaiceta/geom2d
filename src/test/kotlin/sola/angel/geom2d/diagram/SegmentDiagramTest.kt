@@ -2,9 +2,7 @@ package sola.angel.geom2d.diagram
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import sola.angel.geom2d.Point
-import sola.angel.geom2d.Segment
-import sola.angel.geom2d.TParam
+import sola.angel.geom2d.*
 
 class SegmentDiagramTest {
 
@@ -80,6 +78,40 @@ class SegmentDiagramTest {
         assertEquals(
             listOf(TPosValue(TParam.min, 20.0), TPosValue(TParam.max, 30.0)),
             diagram.sortedValues
+        )
+    }
+
+    @Test
+    fun `to diagram`() {
+        val diagram = SegmentDiagram(segment, triangleValues)
+        val n = Vector.makeVersor(-1.0, 1.0)
+
+        assertEquals(
+            Polygon(listOf(
+                Point.origin,
+                Point.origin.displaced(n, 10.0),
+                Point(5.0, 5.0).displaced(n, 30.0),
+                Point(10.0, 10.0).displaced(n, 10.0),
+                Point(10.0, 10.0)
+            )),
+            diagram.toScaledPolygon()
+        )
+    }
+
+    @Test
+    fun `to scaled diagram`() {
+        val diagram = SegmentDiagram(segment, triangleValues)
+        val n = Vector.makeVersor(-1.0, 1.0)
+
+        assertEquals(
+            Polygon(listOf(
+                Point.origin,
+                Point.origin.displaced(n, 20.0),
+                Point(5.0, 5.0).displaced(n, 60.0),
+                Point(10.0, 10.0).displaced(n, 20.0),
+                Point(10.0, 10.0)
+            )),
+            diagram.toScaledPolygon(2.0)
         )
     }
 }

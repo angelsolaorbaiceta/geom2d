@@ -1,5 +1,6 @@
 package sola.angel.geom2d.diagram
 
+import sola.angel.geom2d.Polygon
 import sola.angel.geom2d.Segment
 import sola.angel.geom2d.TParam
 import sola.angel.nums.interpolate
@@ -29,6 +30,20 @@ class SegmentDiagram(
         val smaller = sortedValues.last { it.t < t }
         val greater = sortedValues.first { it.t > t }
         return interpolate(smaller, greater, t)
+    }
+
+    fun toScaledPolygon(scale: Double = 1.0): Polygon {
+        val diagramPoints = sortedValues.map { posVal ->
+            segment.pointAt(posVal.t).displaced(segment.normalVersor, scale * posVal.value)
+        }
+
+        return Polygon(
+            listOf(
+                segment.pointAt(startT),
+                *diagramPoints.toTypedArray(),
+                segment.pointAt(endT)
+            )
+        )
     }
 
     /* COMPANION */
