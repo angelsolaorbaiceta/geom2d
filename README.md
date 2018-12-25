@@ -13,5 +13,5 @@ Immutable 2D Geometry library written in Kotlin.
 - `Polygon`: Plane figure that is described by a finite number of straight line segments connected to form a polygonal chain or polygonal circuit
 
 ## Contracts
-- `PointContainable`: implemented by primitives which have can check if they contain a point
+- `PointContainable`: implemented by primitives which can check if they contain a point
 - `ProximityCheckable`: implemented by primitives which can check whether they are close enough to a given point, and which compute their closest point to it
