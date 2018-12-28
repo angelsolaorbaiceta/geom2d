@@ -5,10 +5,11 @@ import sola.angel.nums.fuzzyEquals
 /**
  * Ordered pair (x, y) of numbers representing a position in a two-dimensional plane.
  */
-class Point(val x: Double, val y: Double) {
+class Point(val x: Double, val y: Double) : Comparable<Point> {
 
     //#region OPERATIONS
     operator fun plus(addend: Point): Point = Point(x + addend.x, y + addend.y)
+
     operator fun minus(subtrahend: Point): Point = Point(x - subtrahend.x, y - subtrahend.y)
     //#endregion
 
@@ -35,6 +36,13 @@ class Point(val x: Double, val y: Double) {
     fun toVector(): Vector = Vector.make(x, y)
     fun vectorTo(end: Point): Vector = Vector.make(end.x - x, end.y - y)
     fun versorTo(end: Point): Vector = Vector.makeVersor(end.x - x, end.y - y)
+
+    override fun compareTo(other: Point): Int =
+        when {
+            this == other -> 0
+            fuzzyEquals(x, other.x) -> y.compareTo(other.y)
+            else -> x.compareTo(other.x)
+        }
     //#endregion
 
     //#region EQUALS, HASH & TO STRING
