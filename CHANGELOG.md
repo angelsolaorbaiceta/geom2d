@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 28/12/2018
+- `Segment` can generate a segment with ordered end points
+
 ## [1.1.1] - 28/12/2018
 ### Added
 - `Point` implements `Comparable<Point>`
@@ -32,5 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contracts: `PointContainable`
 
 [Unreleased]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...HEAD
+[1.1.2]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...v1.1.0

@@ -50,6 +50,8 @@ class Segment(val start: Point, val end: Point) : ProximityCheckable {
 
     fun inverted(): Segment = Segment(this.end, this.start)
 
+    fun ordered(): Segment = if (start < end) this else inverted()
+
     override fun closestPointTo(point: Point): Point {
         val v = Vector.makeBetween(start, point)
         val timesDirVersor = v.dotTimes(directorVersor)
