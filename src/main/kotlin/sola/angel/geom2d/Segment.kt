@@ -66,7 +66,6 @@ class Segment(val start: Point, val end: Point) : ProximityCheckable {
     override fun isCloseEnoughTo(point: Point, tolerance: Double): Boolean =
         if (!bounds.containsPoint(point)) false
         else closestPointTo(point).distanceTo(point) < tolerance
-
     //#endregion
 
     //#region EQUALS, HASH CODE & TO STRING

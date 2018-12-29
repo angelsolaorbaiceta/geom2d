@@ -13,12 +13,11 @@ class TParam private constructor(val value: Double) : Comparable<TParam> {
     val isMax = this == max
     val isExtreme: Boolean = isMax || isMax
 
-    /* OPERATIONS */
+    //#region OPERATIONS & METHODS
     operator fun times(number: Double): Double {
         return value * number;
     }
 
-    /* METHODS */
     override fun compareTo(other: TParam): Int {
         return when {
             fuzzyEquals(value, other.value) -> return 0
@@ -26,8 +25,9 @@ class TParam private constructor(val value: Double) : Comparable<TParam> {
             else -> 1
         }
     }
+    //#endregion
 
-    /* EQUALS, HASH & TO STRING */
+    //#region EQUALS, HASH & TO STRING
     override fun equals(other: Any?): Boolean {
         if (other is TParam) {
             return fuzzyEquals(value, other.value)
@@ -41,8 +41,9 @@ class TParam private constructor(val value: Double) : Comparable<TParam> {
     }
 
     override fun toString(): String = "T: $value"
+    //#endregion
 
-    /* COMPANION */
+    //#region COMPANION
     companion object {
         private const val minValue = 0.0
         private const val maxValue = 1.0
@@ -57,5 +58,11 @@ class TParam private constructor(val value: Double) : Comparable<TParam> {
 
             return TParam(value)
         }
+
+        fun subdivideInParts(parts: Int): List<TParam> {
+            val step: Double = maxValue / parts
+            return IntRange(0, parts).map { make(step * it) }
+        }
     }
+    //#endregion
 }
