@@ -77,4 +77,33 @@ class SegmentTest {
             segment.isCloseEnoughTo(Point(201.0, 201.0), 10.0)
         )
     }
+
+    @Test
+    fun `subdivide in exact parts`() {
+        assertEquals(
+            listOf(TParam.min, TParam.make(0.25), TParam.half, TParam.make(0.75), TParam.max),
+            Segment(Point.origin, Point(10.0, 0.0)).subdivideInSegmentsWithLength(2.5)
+        )
+    }
+
+    @Test
+    fun `subdivide in parts`() {
+        val positions = Segment(Point.origin, Point(10.0, 0.0)).subdivideInSegmentsWithLength(3.0)
+
+        assertEquals(
+            listOf(TParam.min, TParam.make(1.0/3.0), TParam.make(2.0/3.0), TParam.max),
+            positions
+        )
+    }
+
+    @Test
+    fun `subdivide in parts including position`() {
+        val positions = Segment(Point.origin, Point(10.0, 0.0))
+            .subdivideInSegmentsWithLength(3.0, listOf(TParam.half))
+
+        assertEquals(
+            listOf(TParam.min, TParam.make(1.0/3.0), TParam.half, TParam.make(2.0/3.0), TParam.max),
+            positions
+        )
+    }
 }

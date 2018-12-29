@@ -3,6 +3,8 @@ package sola.angel.geom2d
 import sola.angel.geom2d.contracts.ProximityCheckable
 import sola.angel.nums.isCloseToZero
 import kotlin.math.abs
+import kotlin.math.floor
+import kotlin.math.max
 
 /**
  * Part of a line that is bounded by two distinct end points, and contains every point on
@@ -51,6 +53,21 @@ class Segment(val start: Point, val end: Point) : ProximityCheckable {
     fun inverted(): Segment = Segment(this.end, this.start)
 
     fun ordered(): Segment = if (start < end) this else inverted()
+
+    fun subdivideInSegmentsWithLength(
+        minLength: Double,
+        includePositions: Iterable<TParam> = emptyList()
+    ): List<TParam> {
+        if (minLength > length) return includePositions.toList()
+
+        val partsCount = max(1, floor(length / minLength).toInt())
+        return TParam
+            .subdivideInParts(partsCount)
+            .plus(includePositions)
+            .toSet()
+            .toList()
+            .sorted()
+    }
 
     override fun closestPointTo(point: Point): Point {
         val v = Vector.makeBetween(start, point)

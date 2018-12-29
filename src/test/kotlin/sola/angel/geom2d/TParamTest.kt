@@ -1,4 +1,4 @@
-package sola.angel.geom2d.utils
+package sola.angel.geom2d
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
