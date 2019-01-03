@@ -1,5 +1,7 @@
 package sola.angel.geom2d
 
+import sola.angel.nums.fuzzyEquals
+
 /**
  * An Affine Transformation is function between affine spaces which preserves points, straight lines
  * and planes. Also, sets of parallel lines remain parallel after an affine transformation.
@@ -77,6 +79,36 @@ class AffineTransform(
             shearY = shearY
         )
     }
+    //#endregion
+
+    //#region EQUALS, HASH & TO STRING
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+
+        if (other is AffineTransform) {
+            return fuzzyEquals(scaleX, other.scaleX) &&
+                    fuzzyEquals(scaleY, other.scaleY) &&
+                    fuzzyEquals(translationX, other.translationX) &&
+                    fuzzyEquals(translationY, other.translationY) &&
+                    fuzzyEquals(shearX, other.shearX) &&
+                    fuzzyEquals(shearY, other.shearY)
+        }
+
+        return false
+    }
+
+    override fun hashCode(): Int {
+        var result = scaleX.hashCode()
+        result = 31 * result + scaleY.hashCode()
+        result = 31 * result + translationX.hashCode()
+        result = 31 * result + translationY.hashCode()
+        result = 31 * result + shearX.hashCode()
+        result = 31 * result + shearY.hashCode()
+        return result
+    }
+
+    override fun toString(): String =
+        "Affine: [ sx = $scaleX, sy = $scaleY, tx = $translationX, ty = $translationY, shx = $shearX, shy = $shearY ]"
     //#endregion
 
     //#region COMPANION OBJECT
