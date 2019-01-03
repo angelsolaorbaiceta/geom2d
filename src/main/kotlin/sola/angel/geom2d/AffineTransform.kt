@@ -1,6 +1,7 @@
 package sola.angel.geom2d
 
 import sola.angel.nums.fuzzyEquals
+import sola.angel.nums.interpolateValues
 
 /**
  * An Affine Transformation is function between affine spaces which preserves points, straight lines
@@ -91,6 +92,31 @@ class AffineTransform(
             shearX = scaleX * other.shearX + shearX * other.scaleY,
             shearY = shearY * other.scaleX + scaleY * other.shearY
         )
+
+    /**
+     * Returns a sequence of [AffineTransform]s which define an animation from a given start
+     * transformation to a target end transformation using as many steps as indicated.
+     */
+    fun interpolatingValuesTo(end: AffineTransform, steps: Int): List<AffineTransform> {
+        val scalesX = interpolateValues(scaleX, end.scaleX, steps)
+        val scalesY = interpolateValues(scaleY, end.scaleY, steps)
+        val translationsX = interpolateValues(translationX, end.translationX, steps)
+        val translationsY = interpolateValues(translationY, end.translationY, steps)
+        val shearsX = interpolateValues(shearX, end.shearX, steps)
+        val shearsY = interpolateValues(shearY, end.shearY, steps)
+
+        return IntRange(0, steps)
+            .map { i ->
+                AffineTransform(
+                    scaleX = scalesX[i],
+                    scaleY = scalesY[i],
+                    translationX = translationsX[i],
+                    translationY = translationsY[i],
+                    shearX = shearsX[i],
+                    shearY = shearsY[i]
+                )
+            }
+    }
     //#endregion
 
     //#region EQUALS, HASH & TO STRING

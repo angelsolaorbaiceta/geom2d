@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - Implement `equals`, `hashCode` and `toString` for ``AffineTransform
 - Concatenation of `AffineTransform`
+- Interpolation of double values
+- Creation of sequences of `AffineTransform` to produce animations
 
 ## [1.1.3] - 29/12/2018
 ### Added
