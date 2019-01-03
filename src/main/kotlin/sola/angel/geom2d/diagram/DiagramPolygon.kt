@@ -2,7 +2,6 @@ package sola.angel.geom2d.diagram
 
 import sola.angel.geom2d.*
 import sola.angel.geom2d.contracts.ProximityCheckable
-import sun.security.provider.certpath.Vertex
 
 /**
  * Representation of a [SegmentDiagram] as a polygon which has the value of the diagram
