@@ -94,4 +94,15 @@ class AffineTransformTest {
             transform.apply(point)
         )
     }
+
+    @Test
+    fun `concatenate two Affine Transformations`() {
+        val tA = AffineTransform(1.0, 5.0, 3.0, 6.0, 2.0, 4.0)
+        val tB = AffineTransform(6.0, 2.0, 4.0, 1.0, 5.0, 3.0)
+
+        assertEquals(
+            AffineTransform(12.0, 30.0, 9.0, 27.0, 9.0, 39.0),
+            tA.concatenating(tB)
+        )
+    }
 }

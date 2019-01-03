@@ -51,8 +51,7 @@ class AffineTransform(
 
     //#region METHODS : CREATION
     /**
-     * Returns a new Affine Transformation result of concatenating this one with a
-     * displacement.
+     * Returns a new [AffineTransform] result of concatenating this one with a displacement.
      */
     fun displaced(dx: Double, dy: Double): AffineTransform =
         AffineTransform(
@@ -65,7 +64,7 @@ class AffineTransform(
         )
 
     /**
-     * Returns a new Affine Transformation result of concatenating this one with a
+     * Returns a new [AffineTransform] result of concatenating this one with a
      * scaling operation about a given center point.
      */
     fun scaled(factor: Double, center: Point = Point.origin): AffineTransform {
@@ -79,6 +78,19 @@ class AffineTransform(
             shearY = shearY
         )
     }
+
+    /**
+     * Returns a new [AffineTransform] result of concatenating this one with another.
+     */
+    fun concatenating(other: AffineTransform): AffineTransform =
+        AffineTransform(
+            scaleX = scaleX * other.scaleX + shearX * other.shearY,
+            scaleY = scaleY * other.scaleY + shearY * other.shearX,
+            translationX = translationX + scaleX * other.translationX + shearX * other.translationY,
+            translationY = translationY + shearY * other.translationX + scaleY * other.translationY,
+            shearX = scaleX * other.shearX + shearX * other.scaleY,
+            shearY = shearY * other.scaleX + scaleY * other.shearY
+        )
     //#endregion
 
     //#region EQUALS, HASH & TO STRING
