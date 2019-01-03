@@ -32,18 +32,35 @@ class SegmentDiagram(
         return interpolate(smaller, greater, t)
     }
 
-    fun toScaledPolygon(scale: Double = 1.0): Polygon {
-        val diagramPoints = sortedValues.map { posVal ->
-            segment.pointAt(posVal.t).displaced(segment.normalVersor, scale * posVal.value)
-        }
+    /**
+     * Creates a polygon which serves as the diagram's visual representation
+     * with a scale applied.
+     */
+    fun toScaledPolygon(scale: Double = 1.0): Polygon = toScaledDiagramPolygon(scale).polygon
 
-        return Polygon(
+    /**
+     * Creates a [DiagramPolygon] for the [SegmentDiagram], which is a polygon
+     * representing the diagram which vertices are associated to the diagram value.
+     */
+    fun toScaledDiagramPolygon(scale: Double = 1.0): DiagramPolygon {
+        return DiagramPolygon(
+            segment,
             listOf(
-                segment.pointAt(startT),
-                *diagramPoints.toTypedArray(),
-                segment.pointAt(endT)
+                DiagramPolygon.Vertex(startT, null, segment.pointAt(startT)),
+                *diagramPolygonVertices(scale).toTypedArray(),
+                DiagramPolygon.Vertex(endT, null, segment.pointAt(endT))
             )
         )
+    }
+
+    private fun diagramPolygonVertices(scale: Double): List<DiagramPolygon.Vertex> {
+        return sortedValues.map { posVal ->
+            DiagramPolygon.Vertex(
+                posVal.t,
+                posVal.value,
+                segment.pointAt(posVal.t).displaced(segment.normalVersor, scale * posVal.value)
+            )
+        }
     }
 
     /* COMPANION */

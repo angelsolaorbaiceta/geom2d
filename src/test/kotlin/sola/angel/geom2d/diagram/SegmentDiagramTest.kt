@@ -99,7 +99,7 @@ class SegmentDiagramTest {
     }
 
     @Test
-    fun `to scaled diagram`() {
+    fun `to scaled polygon`() {
         val diagram = SegmentDiagram(segment, triangleValues)
         val n = Vector.makeVersor(-1.0, 1.0)
 

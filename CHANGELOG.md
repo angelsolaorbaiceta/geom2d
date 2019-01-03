@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.2.0] - 03/01/2019
+### Added
 - Implement `equals`, `hashCode` and `toString` for ``AffineTransform
 - Concatenation of `AffineTransform`
 - Interpolation of double values
 - Creation of sequences of `AffineTransform` to produce animations
+- `DiagramPolygon`: polygon representation of diagrams with their values associated to vertices
 
 ## [1.1.3] - 29/12/2018
 ### Added
@@ -45,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contracts: `PointContainable`
 
 [Unreleased]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...HEAD
+[1.2.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.3...v1.2.0
 [1.1.3]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.0...v1.1.1

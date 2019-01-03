@@ -4,7 +4,7 @@ import sola.angel.nums.fuzzyEquals
 import sola.angel.nums.interpolateValues
 
 /**
- * An Affine Transformation is function between affine spaces which preserves points, straight lines
+ * An Affine Transformation is a function between affine spaces which preserves points, straight lines
  * and planes. Also, sets of parallel lines remain parallel after an affine transformation.
  *
  * An affine transformation does not necessarily preserve angles between lines or distances between
