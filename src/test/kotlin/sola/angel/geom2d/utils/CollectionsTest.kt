@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import sola.angel.utils.makePairs
 import sola.angel.utils.makeRoundPairs
 
 class CollectionsTest {
@@ -27,6 +28,28 @@ class CollectionsTest {
         assertEquals(
             listOf(Pair(1, 2), Pair(2, 3), Pair(3, 1)),
             makeRoundPairs(listOf(1, 2, 3))
+        )
+    }
+
+    @Test()
+    fun `cannot create pairs from empty collection`() {
+        assertThrows<Exception> {
+            makePairs(emptyList<Int>())
+        }
+    }
+
+    @Test
+    fun `pairs from collection with just one element is empty`() {
+        assertTrue(
+            makePairs(listOf(1)).isEmpty()
+        )
+    }
+
+    @Test
+    fun `pairs of integer sequence`() {
+        assertEquals(
+            listOf(Pair(1, 2), Pair(2, 3)),
+            makePairs(listOf(1, 2, 3))
         )
     }
 }
