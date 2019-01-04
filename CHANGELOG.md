@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 04/01/2019
+### Added
+- `Polyline` affine transformation
+
 ## [1.3.0] - 04/01/2019
 ### Added
 - `Polyline` primitive implementing `ProximityCheckable`
@@ -53,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contracts: `PointContainable`
 
 [Unreleased]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...HEAD
+[1.4.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.3...v1.2.0
 [1.1.3]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.1.2...v1.1.3

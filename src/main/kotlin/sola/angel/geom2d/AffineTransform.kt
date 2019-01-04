@@ -32,6 +32,11 @@ class AffineTransform(
             apply(segment.end)
         )
 
+    fun apply(polyline: Polyline): Polyline =
+        Polyline(
+            polyline.points.map { apply(it) }
+        )
+
     fun apply(polygon: Polygon): Polygon =
         Polygon(
             polygon.vertices.map { apply(it) }
