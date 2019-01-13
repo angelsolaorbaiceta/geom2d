@@ -105,4 +105,17 @@ class AffineTransformTest {
             tA.concatenating(tB)
         )
     }
+
+    @Test
+    fun `inverse transformation`() {
+        val transf = AffineTransform(2.0, 4.0, 3.0, 5.0, 8.0, 10.0)
+        val point = Point(2.0, 5.0)
+
+        assertEquals(
+            point,
+            transf.inverse.apply(
+                transf.apply(point)
+            )
+        )
+    }
 }

@@ -19,6 +19,18 @@ class AffineTransform(
     private val shearY: Double = 0.0
 ) {
 
+    val inverse: AffineTransform by lazy {
+        val denom = scaleX * scaleY - shearX * shearY
+        AffineTransform(
+            scaleX = scaleY / denom,
+            scaleY = scaleX / denom,
+            translationX = (translationY * shearX - scaleY * translationX) / denom,
+            translationY = (translationX * shearY - scaleX * translationY) / denom,
+            shearX = - shearX / denom,
+            shearY = - shearY / denom
+        )
+    }
+
     //#region METHODS : APPLY
     fun apply(point: Point): Point =
         Point(
