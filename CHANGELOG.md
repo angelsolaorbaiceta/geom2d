@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 24/01/2019
+### Changed
+- `Size` constructor now private. Use `Size.make` which makes sure width and height are positive.
+
 ## [1.5.0] - 13/01/2019
 ### Added
 - `AffineTransformation` inverse transformation lazy property
@@ -61,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contracts: `PointContainable`
 
 [Unreleased]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...HEAD
+[1.6.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.2.0...v1.3.0

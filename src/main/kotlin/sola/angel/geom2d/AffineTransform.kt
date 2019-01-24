@@ -55,7 +55,7 @@ class AffineTransform(
         )
 
     fun applyScale(size: Size): Size =
-        Size(
+        Size.make(
             size.width * scaleX,
             size.height * scaleY
         )

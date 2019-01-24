@@ -1,6 +1,7 @@
 package sola.angel.geom2d
 
 import sola.angel.geom2d.contracts.PointContainable
+import kotlin.math.abs
 
 /**
  * Quadrilateral with four right angles.
@@ -38,7 +39,7 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         val vOverlap = verticalOverlapWith(other) ?: return null
         return Rect(
             Point(hOverlap.start, vOverlap.start),
-            Size(hOverlap.length, vOverlap.length)
+            Size.make(hOverlap.length, vOverlap.length)
         )
     }
 
@@ -79,7 +80,7 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
         if (this === other) return true
 
         if (other is Rect) {
-            return origin.equals(other.origin) && size.equals(other.size)
+            return origin == other.origin && size == other.size
         }
 
         return false
@@ -108,7 +109,7 @@ class Rect(val origin: Point, val size: Size) : PointContainable {
                     min.x - margin,
                     min.y - margin
                 ),
-                Size(
+                Size.make(
                     size.x + 2.0 * margin,
                     size.y + 2.0 * margin
                 )

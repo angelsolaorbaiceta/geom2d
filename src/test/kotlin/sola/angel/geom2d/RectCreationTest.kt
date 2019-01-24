@@ -12,7 +12,7 @@ class RectCreationTest {
 
     @Test
     fun `can be created containing points`() {
-        val expected = Rect(Point(1.0, 3.0), Size(2.0, 2.0))
+        val expected = Rect(Point(1.0, 3.0), Size.make(2.0, 2.0))
         val actual = Rect.makeContaining(points)
 
         assertEquals(expected, actual)
@@ -20,7 +20,7 @@ class RectCreationTest {
 
     @Test
     fun `can be created containing points with margin`() {
-        val expected = Rect(Point(0.0, 2.0), Size(4.0, 4.0))
+        val expected = Rect(Point(0.0, 2.0), Size.make(4.0, 4.0))
         val actual = Rect.makeContaining(points, 1.0)
 
         assertEquals(expected, actual)

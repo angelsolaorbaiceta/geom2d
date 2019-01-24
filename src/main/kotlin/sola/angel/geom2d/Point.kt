@@ -32,7 +32,7 @@ class Point(val x: Double, val y: Double) : Comparable<Point> {
         )
     }
 
-    fun toSize(): Size = Size(x, y)
+    fun toSize(): Size = Size.make(x, y)
     fun toVector(): Vector = Vector.make(x, y)
     fun vectorTo(end: Point): Vector = Vector.make(end.x - x, end.y - y)
     fun versorTo(end: Point): Vector = Vector.makeVersor(end.x - x, end.y - y)

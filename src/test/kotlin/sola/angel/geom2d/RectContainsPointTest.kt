@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class RectContainsPointTest {
-    private val rect = Rect(Point.origin, Size(2.0, 5.0))
+    private val rect = Rect(Point.origin, Size.make(2.0, 5.0))
 
     @Test
     fun `rect contains point`() {
