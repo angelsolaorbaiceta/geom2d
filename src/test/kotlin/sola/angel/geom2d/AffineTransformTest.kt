@@ -51,6 +51,28 @@ class AffineTransformTest {
     }
 
     @Test
+    fun `transform rect with positive scale`() {
+        val rect = Rect(Point.origin, Size.make(10.0, 20.0))
+        val transform = AffineTransform(2.0, 3.0, 5.0, 7.0)
+
+        assertEquals(
+            Rect(Point(5.0, 7.0), Size.make(20.0, 60.0)),
+            transform.applyScaleAndDisplacement(rect)
+        )
+    }
+
+    @Test
+    fun `transform rect with negative scale`() {
+        val rect = Rect(Point.origin, Size.make(10.0, 20.0))
+        val transform = AffineTransform(2.0, -3.0, 5.0, 7.0)
+
+        assertEquals(
+            Rect(Point(5.0, -53.0), Size.make(20.0, 60.0)),
+            transform.applyScaleAndDisplacement(rect)
+        )
+    }
+
+    @Test
     fun `rotate point positive angle`() {
         val point = Point(5.0, 0.0)
         val angleInRadians = 0.5 * Math.PI

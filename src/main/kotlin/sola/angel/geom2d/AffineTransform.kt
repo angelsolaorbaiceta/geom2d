@@ -26,8 +26,8 @@ class AffineTransform(
             scaleY = scaleX / denom,
             translationX = (translationY * shearX - scaleY * translationX) / denom,
             translationY = (translationX * shearY - scaleX * translationY) / denom,
-            shearX = - shearX / denom,
-            shearY = - shearY / denom
+            shearX = -shearX / denom,
+            shearY = -shearY / denom
         )
     }
 
@@ -61,8 +61,8 @@ class AffineTransform(
         )
 
     fun applyScaleAndDisplacement(rect: Rect): Rect =
-        Rect(
-            apply(rect.origin),
+        Rect.makeCentered(
+            apply(rect.center),
             applyScale(rect.size)
         )
     //#endregion
