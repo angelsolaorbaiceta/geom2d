@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 28/01/2019
+### Added
+- `AffineTransformation` method for creating a new transform where the scale components are set to 1.0 or -1.0
+
 ## [1.6.1] - 24/01/2019
 ### Fixed
 - `AffineTransformation` method `applyScaleAndDisplacement` for negative scales 
@@ -69,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contracts: `PointContainable`
 
 [Unreleased]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.0.0...HEAD
+[1.7.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/angelsolaorbaiceta/geom2d/compare/v1.4.0...v1.5.0

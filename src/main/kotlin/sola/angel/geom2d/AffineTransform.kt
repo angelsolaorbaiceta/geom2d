@@ -2,6 +2,7 @@ package sola.angel.geom2d
 
 import sola.angel.nums.fuzzyEquals
 import sola.angel.nums.interpolateValues
+import kotlin.math.sign
 
 /**
  * An Affine Transformation is a function between affine spaces which preserves points, straight lines
@@ -134,6 +135,13 @@ class AffineTransform(
                 )
             }
     }
+
+    /**
+     * Returns an [AffineTransform] similar to this one where the scale components are set to
+     * 1.0 or -1.0, effectively removing scale.
+     */
+    fun withoutScale(): AffineTransform =
+        AffineTransform(sign(scaleX), sign(scaleY), translationX, translationY, shearX, shearY)
     //#endregion
 
     //#region EQUALS, HASH & TO STRING
